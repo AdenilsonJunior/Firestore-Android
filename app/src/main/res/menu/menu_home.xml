@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+
+	<item android:id="@+id/itemMenuCreate"
+		  app:showAsAction="always"
+		  android:title="@string/text_create"/>
+
+	<item android:id="@+id/itemMenuAll"
+		  app:showAsAction="never"
+		  android:title="@string/title_all"/>
+
+	<item android:id="@+id/itemMenuAllCompleted"
+		  app:showAsAction="never"
+		  android:title="@string/title_all_completed"/>
+
+	<item android:id="@+id/itemMenuAllCompletedAndLevel3"
+		  app:showAsAction="never"
+		  android:title="@string/title_all_completed_level_3"/>
+
+	<item android:id="@+id/itemMenuNotCompletedLessThanLevel3"
+		  app:showAsAction="never"
+		  android:title="@string/title_not_completed_less_than_lvl_3"/>
+</menu>

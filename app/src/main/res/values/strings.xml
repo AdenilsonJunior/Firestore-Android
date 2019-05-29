@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">FirebaseApp</string>
+	<string name="hint_title">Title</string>
+	<string name="level_1">1</string>
+	<string name="text_level">Level</string>
+	<string name="level_2">2</string>
+	<string name="level_3">3</string>
+	<string name="text_save">Salvar</string>
+	<string name="message_task_added">Task was added</string>
+	<string name="text_create">Create</string>
+	<string name="message_task_error">Error</string>
+	<string name="text_level_placeholder">Level %1$s</string>
+	<string name="title_all_completed">All Completed</string>
+	<string name="title_all">All</string>
+	<string name="title_all_completed_level_3">All Completed Level 3</string>
+	<string name="title_not_completed_less_than_lvl_3">Not Completed Less Than Level 3</string>
+</resources>
