@@ -37,36 +37,17 @@ class TaskListController(
     }
 
     fun handleComplete(task: Task) {
-        firebaseFirestore.collection(Constants.TASKS)
-            .whereEqualTo(Constants.TASK_ID, task.id)
-            .get().addOnCompleteListener { querySnapshot ->
-                if (querySnapshot.isSuccessful) {
-                    querySnapshot.result?.map {
-                        it.id
-                    }?.first()?.run {
-                        firebaseFirestore.collection(Constants.TASKS)
-                            .document(this)
-                            .update(Constants.TASK_COMPLETED, !task.completed)
-                    }
-                }
-            }
+        firebaseFirestore.runTransaction {
+            val taskRef = firebaseFirestore.collection(Constants.TASKS).document(task.id)
+            val completedFromServer = it.get(taskRef).getBoolean(Constants.TASK_COMPLETED) ?: false
+            it.update(taskRef, Constants.TASK_COMPLETED, !completedFromServer)
+        }
     }
 
     fun deleteTask(task: Task) {
         firebaseFirestore.collection(Constants.TASKS)
-            .whereEqualTo(Constants.TASK_ID, task.id)
-            .get().addOnCompleteListener { querySnapshot ->
-                if (querySnapshot.isSuccessful) {
-                    querySnapshot.result?.map {
-                        it.id
-                    }?.first()?.run {
-                        firebaseFirestore.collection(Constants.TASKS)
-                            .document(this)
-                            .delete()
-                    }
-
-                }
-            }
+            .document(task.id)
+            .delete()
     }
 
     fun getNotCompletedAndLessThanLevel3() {
@@ -117,5 +98,4 @@ class TaskListController(
 interface TaskListContract {
     fun onGetTasksSuccess(tasks: List<Task?>)
     fun onGetTasksError()
-
 }
